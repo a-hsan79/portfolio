@@ -1,0 +1,7 @@
+# Vercel / OS
+.vercel
+node_modules
+.DS_Store
+
+# Local tooling
+.aionrs

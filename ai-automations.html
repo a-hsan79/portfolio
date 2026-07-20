@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Automations & AI Agents — Beyond AHSAN</title>
+  <meta name="description" content="AI automation and autonomous agent services by Beyond AHSAN — workflows, LLM agents, and RAG systems that run your business on autopilot." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Sora', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8',
+              500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81',
+            },
+            ink: '#0f172a',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            fadeUp: 'fadeUp .7s ease forwards',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: light dark; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+      .animate-float { animation: none; }
+    }
+    .glass { background: rgba(255,255,255,.7); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .dark .glass { background: rgba(15,23,42,.7); }
+    .gradient-text { background: linear-gradient(120deg,#6366f1,#a855f7,#6366f1); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; }
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-700 dark:bg-[#0b1120] dark:text-slate-300 font-body antialiased selection:bg-brand-500/30">
+
+  <!-- Background decorative blobs -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-brand-400/30 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-fuchsia-400/20 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="fixed top-4 left-4 right-4 z-50">
+    <nav class="glass mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-white/40 dark:border-white/10 px-5 py-3 shadow-lg shadow-slate-900/5">
+      <a href="index.html" class="flex items-center gap-2 font-display font-bold text-ink dark:text-white">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-600 text-white shadow-md">B</span>
+        <span>Beyond AHSAN.</span>
+      </a>
+      <ul class="hidden items-center gap-8 text-sm font-medium md:flex">
+        <li><a href="index.html" class="cursor-pointer transition-colors hover:text-brand-600 dark:hover:text-brand-300">Portfolio</a></li>
+        <li><a href="#services" class="cursor-pointer transition-colors hover:text-brand-600 dark:hover:text-brand-300">Services</a></li>
+        <li><a href="#agents" class="cursor-pointer transition-colors hover:text-brand-600 dark:hover:text-brand-300">AI Agents</a></li>
+        <li><a href="#contact" class="cursor-pointer transition-colors hover:text-brand-600 dark:hover:text-brand-300">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" aria-label="Toggle dark mode" class="cursor-pointer grid h-9 w-9 place-items-center rounded-xl border border-slate-200 dark:border-white/10 text-ink transition-colors hover:bg-slate-100 dark:text-white dark:hover:bg-white/10">
+          <svg id="iconMoon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="iconSun" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36l-1.42-1.42M7.05 7.05L5.64 5.64m12.72 0l-1.42 1.42M7.05 16.95l-1.41 1.41M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </button>
+        <a href="#contact" class="cursor-pointer hidden rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-colors hover:bg-brand-700 sm:inline-block">Get started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-28">
+    <!-- Hero -->
+    <section class="mx-auto max-w-6xl px-5 pb-20 pt-10 text-center md:pt-20">
+      <div class="reveal inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-4 py-1.5 text-xs font-medium text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
+        <svg class="h-4 w-4 text-brand-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a2 2 0 012 2v1.1a7 7 0 014.9 4.9H20a2 2 0 110 4h-1.1a7 7 0 01-4.9 4.9V20a2 2 0 11-4 0v-1.1A7 7 0 015.1 14.9H4a2 2 0 110-4h1.1A7 7 0 019 6V4a2 2 0 012-2zm0 6a4 4 0 100 8 4 4 0 000-8z"/></svg>
+        AI Automation Studio
+      </div>
+      <h1 class="reveal font-display text-4xl font-extrabold leading-tight text-ink dark:text-white sm:text-6xl md:text-7xl">
+        Put your work on<br /><span class="gradient-text">autopilot with AI</span>
+      </h1>
+      <p class="reveal mx-auto mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+        Intelligent automations and autonomous agents built by <span class="font-semibold text-ink dark:text-white">Beyond AHSAN</span>. From repetitive tasks to full workflows — I design AI systems that think, act, and scale.
+      </p>
+      <div class="reveal mt-9 flex flex-wrap items-center justify-center gap-4">
+        <a href="#contact" class="cursor-pointer rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white shadow-lg shadow-brand-600/30 transition-colors hover:bg-brand-700">Build my agent</a>
+        <a href="#services" class="cursor-pointer rounded-xl border border-slate-300 px-6 py-3 font-semibold text-ink transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10">See services</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="reveal mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">200+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Workflows built</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">15k+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Hours saved</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">40+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Agents deployed</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">99%</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Uptime</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="mx-auto max-w-6xl px-5 py-20">
+      <div class="reveal mb-12 text-center">
+        <h2 class="font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">AI services</h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">Practical AI systems that remove busywork and create leverage.</p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-3">
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-brand-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Workflow Automation</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Make, Zapier & n8n pipelines that connect your tools and run tasks 24/7 without human input.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-brand-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2zM9 9h6v6H9z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Custom AI Agents</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">LLM-powered agents that plan, reason, and act — handling support, research, and operations autonomously.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-brand-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 18a7 7 0 110-14 7 7 0 010 14z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">RAG & Knowledge</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Connect your docs, FAQs, and data to a retrieval system so your AI answers with your own context.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-brand-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Prompt Engineering</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Reliable, tested prompt systems and guardrails so your AI outputs stay consistent and on-brand.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-brand-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13h4l3 8 4-16 3 8h4"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Chatbots & Copilots</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Customer-facing assistants and internal copilots trained on your business, deployed anywhere.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-brand-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.1-1.34 2-3 2s-3-.9-3-2 1.34-2 3-2 3 .9 3 2zm12-3c0 1.1-1.34 2-3 2s-3-.9-3-2 1.34-2 3-2 3 .9 3 2z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">AI Integrations</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Wire OpenAI, Claude, and open models into your CRM, email, and stack via clean APIs.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- AI Agents deep-dive -->
+    <section id="agents" class="mx-auto max-w-6xl px-5 py-20">
+      <div class="reveal mb-12 text-center">
+        <h2 class="font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">Meet the AI Agents</h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">Autonomous teammates that take real action, not just chat.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        <div class="reveal rounded-2xl border border-slate-200 bg-white/70 p-6 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-600 text-white">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7 4 4-7 7 4-4 7 4 7-7-4-4 7-7-4 4-7z"/></svg>
+          </div>
+          <h3 class="mt-4 font-display font-semibold text-ink dark:text-white">Atlas — Ops Agent</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Triage email, draft replies, book meetings, and update your CRM on autopilot.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-slate-200 bg-white/70 p-6 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-600 text-white">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 18a7 7 0 110-14 7 7 0 010 14z"/></svg>
+          </div>
+          <h3 class="mt-4 font-display font-semibold text-ink dark:text-white">Sage — Research Agent</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Crawls sources, summarizes, and delivers daily briefs with citations.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-slate-200 bg-white/70 p-6 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-brand-600 text-white">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="mt-4 font-display font-semibold text-ink dark:text-white">Echo — Support Agent</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Answers customer questions 24/7 using your knowledge base, escalates when needed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="contact" class="mx-auto max-w-4xl px-5 py-20">
+      <div class="reveal rounded-3xl border border-slate-200 bg-white/70 p-10 text-center shadow-xl shadow-slate-900/5 dark:border-white/10 dark:bg-white/5">
+        <h2 class="font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">Let's automate it</h2>
+        <p class="mx-auto mt-4 max-w-xl text-slate-600 dark:text-slate-400">Tell me the repetitive work you want gone. I'll design an AI system or agent that handles it — and show you the ROI in week one.</p>
+        <form class="mx-auto mt-8 grid max-w-md gap-4 text-left" onsubmit="event.preventDefault(); alert('Thanks! This is a demo form — wire it to your backend.');">
+          <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Name
+            <input required type="text" placeholder="Your name" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition-colors focus:border-brand-500 dark:border-white/10 dark:bg-white/5 dark:text-white" />
+          </label>
+          <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Email
+            <input required type="email" placeholder="you@email.com" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition-colors focus:border-brand-500 dark:border-white/10 dark:bg-white/5 dark:text-white" />
+          </label>
+          <label class="text-sm font-medium text-slate-700 dark:text-slate-300">What to automate?
+            <textarea required rows="4" placeholder="e.g. automate customer support + lead routing..." class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition-colors focus:border-brand-500 dark:border-white/10 dark:bg-white/5 dark:text-white"></textarea>
+          </label>
+          <button type="submit" class="cursor-pointer mt-2 rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white shadow-lg shadow-brand-600/30 transition-colors hover:bg-brand-700">Request my AI plan</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 py-10 text-center text-sm text-slate-500 dark:border-white/10 dark:text-slate-400">
+    <p>© <span id="year"></span> Beyond AHSAN. AI Automations Studio.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const html = document.documentElement;
+    const iconMoon = document.getElementById('iconMoon');
+    const iconSun = document.getElementById('iconSun');
+    function applyTheme(theme) {
+      if (theme === 'dark') { html.classList.add('dark'); iconMoon.classList.add('hidden'); iconSun.classList.remove('hidden'); }
+      else { html.classList.remove('dark'); iconSun.classList.add('hidden'); iconMoon.classList.remove('hidden'); }
+    }
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { e.target.style.transitionDelay = (i % 4) * 80 + 'ms'; e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>

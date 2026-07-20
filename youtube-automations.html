@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YT Automations — Beyond AHSAN</title>
+  <meta name="description" content="YouTube automation services by Beyond AHSAN — faceless channels, content systems, and growth workflows that scale." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Sora', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8',
+              500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81',
+            },
+            ink: '#0f172a',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+            fadeUp: { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          },
+          animation: {
+            float: 'float 6s ease-in-out infinite',
+            fadeUp: 'fadeUp .7s ease forwards',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: light dark; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: none; opacity: 1; transform: none; }
+      .animate-float { animation: none; }
+    }
+    .glass { background: rgba(255,255,255,.7); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+    .dark .glass { background: rgba(15,23,42,.7); }
+    .gradient-text { background: linear-gradient(120deg,#ef4444,#f97316,#ef4444); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; }
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-700 dark:bg-[#0b1120] dark:text-slate-300 font-body antialiased selection:bg-red-500/30">
+
+  <!-- Background decorative blobs -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-red-400/25 blur-3xl"></div>
+    <div class="absolute top-1/3 -right-32 h-96 w-96 rounded-full bg-orange-400/20 blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/3 h-96 w-96 rounded-full bg-rose-500/20 blur-3xl"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="fixed top-4 left-4 right-4 z-50">
+    <nav class="glass mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-white/40 dark:border-white/10 px-5 py-3 shadow-lg shadow-slate-900/5">
+      <a href="index.html" class="flex items-center gap-2 font-display font-bold text-ink dark:text-white">
+        <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-600 text-white shadow-md">B</span>
+        <span>Beyond AHSAN.</span>
+      </a>
+      <ul class="hidden items-center gap-8 text-sm font-medium md:flex">
+        <li><a href="index.html" class="cursor-pointer transition-colors hover:text-red-600 dark:hover:text-red-300">Portfolio</a></li>
+        <li><a href="#services" class="cursor-pointer transition-colors hover:text-red-600 dark:hover:text-red-300">Services</a></li>
+        <li><a href="#process" class="cursor-pointer transition-colors hover:text-red-600 dark:hover:text-red-300">Process</a></li>
+        <li><a href="#contact" class="cursor-pointer transition-colors hover:text-red-600 dark:hover:text-red-300">Contact</a></li>
+      </ul>
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" aria-label="Toggle dark mode" class="cursor-pointer grid h-9 w-9 place-items-center rounded-xl border border-slate-200 dark:border-white/10 text-ink transition-colors hover:bg-slate-100 dark:text-white dark:hover:bg-white/10">
+          <svg id="iconMoon" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg id="iconSun" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.36 6.36l-1.42-1.42M7.05 7.05L5.64 5.64m12.72 0l-1.42 1.42M7.05 16.95l-1.41 1.41M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        </button>
+        <a href="#contact" class="cursor-pointer hidden rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-md transition-colors hover:bg-red-700 sm:inline-block">Get started</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-28">
+    <!-- Hero -->
+    <section class="mx-auto max-w-6xl px-5 pb-20 pt-10 text-center md:pt-20">
+      <div class="reveal inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/60 px-4 py-1.5 text-xs font-medium text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
+        <svg class="h-4 w-4 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/></svg>
+        YouTube Automation Studio
+      </div>
+      <h1 class="reveal font-display text-4xl font-extrabold leading-tight text-ink dark:text-white sm:text-6xl md:text-7xl">
+        Scale your channel with<br /><span class="gradient-text">YT Automations</span>
+      </h1>
+      <p class="reveal mx-auto mt-6 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
+        Faceless channels, content pipelines, and growth systems built by <span class="font-semibold text-ink dark:text-white">Beyond AHSAN</span>. I turn consistent systems into compounding views — without burning out.
+      </p>
+      <div class="reveal mt-9 flex flex-wrap items-center justify-center gap-4">
+        <a href="#contact" class="cursor-pointer rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow-lg shadow-red-600/30 transition-colors hover:bg-red-700">Start a channel</a>
+        <a href="#services" class="cursor-pointer rounded-xl border border-slate-300 px-6 py-3 font-semibold text-ink transition-colors hover:bg-slate-100 dark:border-white/15 dark:text-white dark:hover:bg-white/10">See services</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="reveal mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">40M+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Views generated</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">25+</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Channels built</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">3x</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Avg. growth</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5">
+          <div class="font-display text-3xl font-bold text-ink dark:text-white">100%</div>
+          <div class="text-sm text-slate-500 dark:text-slate-400">Faceless ready</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="mx-auto max-w-6xl px-5 py-20">
+      <div class="reveal mb-12 text-center">
+        <h2 class="font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">What I automate</h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">End-to-end YouTube systems — from idea to upload to scale.</p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-3">
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-red-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.55-2.28A1 1 0 0121 8.62v6.76a1 1 0 01-1.45.9L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Faceless Channels</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Niche research, scripting, voiceover, and editing — fully hands-off channels that earn while you sleep.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-red-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Content Pipelines</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Repeatable production workflows — scripting, thumbnails, SEO titles & tags — so uploads stay consistent.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-red-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13h4l3 8 4-16 3 8h4"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Growth & SEO</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Data-driven optimization, retention hooks, and metadata strategy to compound watch time and subs.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-red-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.1-1.34 2-3 2s-3-.9-3-2 1.34-2 3-2 3 .9 3 2zm12-3c0 1.1-1.34 2-3 2s-3-.9-3-2 1.34-2 3-2 3 .9 3 2z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Monetization</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">AdSense, affiliate, and brand-deal frameworks to turn views into reliable monthly revenue.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-red-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2M12 22a10 10 0 110-20 10 10 0 010 20z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Automation Tools</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Zapier/Make bots, scheduling, and AI-assisted editing to cut production time by 70%.</p>
+        </article>
+
+        <article class="reveal group cursor-pointer rounded-3xl border border-slate-200 bg-white/70 p-7 shadow-lg shadow-slate-900/5 transition-colors hover:border-red-400 dark:border-white/10 dark:bg-white/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-red-50 text-red-600 dark:bg-red-500/10 dark:text-red-300">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h5a2 2 0 012 2v11a2 2 0 01-2 2z"/></svg>
+          </div>
+          <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Analytics Reports</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Monthly dashboards showing what's working, what to double down on, and where to cut.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section id="process" class="mx-auto max-w-6xl px-5 py-20">
+      <div class="reveal mb-12 text-center">
+        <h2 class="font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">How it works</h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-400">A clear, proven path from blank channel to running system.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-4">
+        <div class="reveal rounded-2xl border border-slate-200 bg-white/70 p-6 text-center dark:border-white/10 dark:bg-white/5">
+          <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-red-600 font-display text-lg font-bold text-white">1</div>
+          <h3 class="mt-4 font-display font-semibold text-ink dark:text-white">Research</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Find a winning niche & angle with data.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-slate-200 bg-white/70 p-6 text-center dark:border-white/10 dark:bg-white/5">
+          <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-red-600 font-display text-lg font-bold text-white">2</div>
+          <h3 class="mt-4 font-display font-semibold text-ink dark:text-white">Build</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Script, voice, edit, and brand the channel.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-slate-200 bg-white/70 p-6 text-center dark:border-white/10 dark:bg-white/5">
+          <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-red-600 font-display text-lg font-bold text-white">3</div>
+          <h3 class="mt-4 font-display font-semibold text-ink dark:text-white">Automate</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Set pipelines & bots for consistent uploads.</p>
+        </div>
+        <div class="reveal rounded-2xl border border-slate-200 bg-white/70 p-6 text-center dark:border-white/10 dark:bg-white/5">
+          <div class="mx-auto grid h-12 w-12 place-items-center rounded-full bg-red-600 font-display text-lg font-bold text-white">4</div>
+          <h3 class="mt-4 font-display font-semibold text-ink dark:text-white">Scale</h3>
+          <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Optimize & grow watch time + revenue.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / CTA -->
+    <section id="contact" class="mx-auto max-w-4xl px-5 py-20">
+      <div class="reveal rounded-3xl border border-slate-200 bg-white/70 p-10 text-center shadow-xl shadow-slate-900/5 dark:border-white/10 dark:bg-white/5">
+        <h2 class="font-display text-3xl font-bold text-ink dark:text-white sm:text-4xl">Ready to automate?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-slate-600 dark:text-slate-400">Tell me your niche and goals — I'll map out a channel system that fits. Free 20-minute strategy call.</p>
+        <form class="mx-auto mt-8 grid max-w-md gap-4 text-left" onsubmit="event.preventDefault(); alert('Thanks! This is a demo form — wire it to your backend.');">
+          <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Name
+            <input required type="text" placeholder="Your name" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition-colors focus:border-red-500 dark:border-white/10 dark:bg-white/5 dark:text-white" />
+          </label>
+          <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Email
+            <input required type="email" placeholder="you@email.com" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition-colors focus:border-red-500 dark:border-white/10 dark:bg-white/5 dark:text-white" />
+          </label>
+          <label class="text-sm font-medium text-slate-700 dark:text-slate-300">Your niche / goal
+            <textarea required rows="4" placeholder="e.g. faceless finance channel, 3 uploads/week..." class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition-colors focus:border-red-500 dark:border-white/10 dark:bg-white/5 dark:text-white"></textarea>
+          </label>
+          <button type="submit" class="cursor-pointer mt-2 rounded-xl bg-red-600 px-6 py-3 font-semibold text-white shadow-lg shadow-red-600/30 transition-colors hover:bg-red-700">Book my strategy call</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200 py-10 text-center text-sm text-slate-500 dark:border-white/10 dark:text-slate-400">
+    <p>© <span id="year"></span> Beyond AHSAN. YT Automations Studio.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const html = document.documentElement;
+    const iconMoon = document.getElementById('iconMoon');
+    const iconSun = document.getElementById('iconSun');
+    function applyTheme(theme) {
+      if (theme === 'dark') { html.classList.add('dark'); iconMoon.classList.add('hidden'); iconSun.classList.remove('hidden'); }
+      else { html.classList.remove('dark'); iconSun.classList.add('hidden'); iconMoon.classList.remove('hidden'); }
+    }
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { e.target.style.transitionDelay = (i % 4) * 80 + 'ms'; e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
